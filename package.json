@@ -7,9 +7,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
-    "full": "node . && SHOULD_BATCH=true node ."
+    "test": "node . && SHOULD_BATCH=true node ."
   },
   "keywords": [],
   "author": "Szabolcs Szilágyi",
