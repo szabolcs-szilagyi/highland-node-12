@@ -7,9 +7,14 @@
     "node": ">=12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Szabolcs Szilágyi",
+  "license": "ISC",
+  "dependencies": {
+    "highland": "^3.0.0-beta.10",
+    "mongodb": "3.5.3"
+  }
 }
