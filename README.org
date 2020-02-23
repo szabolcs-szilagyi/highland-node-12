@@ -1,0 +1,13 @@
+* Test setup for a highland bug
+
+When using NodeJS version 10 or later, there is a bug in Highland, that causes
+streams to hang indefinitely.
+
+Related bug ticket: https://github.com/caolan/highland/issues/693
+
+Has it been fixed? -
+[[https://travis-ci.org/szabolcs-szilagyi/highland-node-12.svg?branch=master]]
+
+
+The build should be passing once the issue is fixed. Travis job has been setup
+to run daily.
