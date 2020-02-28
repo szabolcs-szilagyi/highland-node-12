@@ -50,6 +50,7 @@ async function run() {
     shouldBatch ? hl(mongoStream).batch(300) : hl(mongoStream);
 
   const stream = getStream()
+    .flatten()
     .map(r => (console.count('Processed document'), Promise.resolve(r)))
     .flatMap(hl)
     .collect()
