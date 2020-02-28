@@ -15,7 +15,9 @@ const promiseTimeout = (toRace, delay) => {
 };
 
 async function run() {
-  const client = new MongoClient(url, { useUnifiedTopology: true });
+  const client = new MongoClient(url, {
+    useUnifiedTopology: true,
+  });
 
   async function exit(error) {
     if (error) console.log(error.message);
@@ -32,19 +34,20 @@ async function run() {
   await collection.deleteMany({});
 
   for (let counter = 0; counter < 1500; counter++) {
-    await collection.insertOne({ foo: 'bar', counter });
+    await collection.insertOne({
+      foo: 'bar',
+      counter,
+    });
   }
 
-  await collection.count({})
+  await collection
+    .count({})
     .then(r => console.info('Inserted documents:', r, 'Batched:', shouldBatch));
 
-  const mongoStream = collection
-    .find()
-    .stream();
+  const mongoStream = collection.find().stream();
 
-  const getStream = () => shouldBatch ?
-        hl(mongoStream).batch(300) :
-        hl(mongoStream);
+  const getStream = () =>
+    shouldBatch ? hl(mongoStream).batch(300) : hl(mongoStream);
 
   const stream = getStream()
     .map(r => (console.count('Processed document'), Promise.resolve(r)))
