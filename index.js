@@ -46,6 +46,13 @@ async function run() {
 
   const mongoStream = collection.find().stream();
 
+  mongoStream.on('close', () => console.log('######### CLOSED ##########'));
+  mongoStream.on('end', () => console.log('$$$$$$$$$ END $$$$$$$$$$'));
+
+  // should not need finish, as write streams finish and read streams end but
+  // added just in case I'm in correct
+  mongoStream.on('finish', () => console.log('%%%%%%%%% FINISH %%%%%%%%%%'));
+
   const getStream = () =>
     shouldBatch ? hl(mongoStream).batch(300) : hl(mongoStream);
 
