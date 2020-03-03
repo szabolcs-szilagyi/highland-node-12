@@ -45,6 +45,10 @@ async function run() {
     .then(r => console.info('Inserted documents:', r, 'Batched:', shouldBatch));
 
   const mongoStream = collection.find().stream();
+  // const mongoStream = hl.of(collection.find().stream()).flatMap(hl);
+  // streaming will work with batched option with the line above as per
+  // mentioned by eccentric-j in:
+  // https://github.com/caolan/highland/issues/693#issuecomment-593778433
 
   mongoStream.on('close', () => console.log('######### CLOSED ##########'));
   mongoStream.on('end', () => console.log('$$$$$$$$$ END $$$$$$$$$$'));
